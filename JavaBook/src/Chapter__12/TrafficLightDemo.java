@@ -2,7 +2,11 @@
 package Chapter__12;
 
 enum TrafficLightColor{
-    RED, GREEN, YELLOW
+    RED(12000), GREEN(10000), YELLOW(2000);
+    private int time;
+    
+    TrafficLightColor(int t){ time =t;}
+    int getDelay() {return time;}
 }
 
 class TrafficLightSimulator implements Runnable{
@@ -23,17 +27,7 @@ class TrafficLightSimulator implements Runnable{
     public void run() {
         while(!stop){
             try{
-                switch(tlc){
-                    case GREEN:
-                        Thread.sleep(10000); //green for 10 seconds
-                        break;
-                    case YELLOW:
-                        Thread.sleep(2000); //yellow for 2 seconds
-                        break;
-                    case RED:
-                        Thread.sleep(12000); //red for 12 seconds
-                        break;
-                }
+                Thread.sleep(tlc.getDelay());
             } catch(InterruptedException ex){
                 System.out.println(ex);
             }
