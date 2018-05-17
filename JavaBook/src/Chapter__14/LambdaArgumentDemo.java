@@ -44,6 +44,9 @@ class LambdaArgumentDemo{
 
 		  outStr = changeStr((str) ->str.replace(' ', '-') , inStr);
 		  System.out.println("Output of replace: " + outStr);
+
+		  outStr = changeStr((str) -> str.replace(' ','\u0000'), inStr);
+		  System.out.println("Last: " + outStr);
       }
 
 
